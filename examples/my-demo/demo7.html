@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="container"></div>
+<script src="../shared/thirdparty/es5-shim.min.js"></script>
+<script src="../shared/thirdparty/es5-sham.min.js"></script>
+<script src="../../build/react.js"></script>
+<script src="../../build/JSXTransformer.js"></script>
+<script type="text/jsx">
+    var App = React.createClass({
+        getInitialState : function () {
+            return {userInput : ''};
+        },
+        handleChange : function () {
+            this.setState({userInput : e.target.value});
+        },
+        clearAndFocusInput: function() {
+            this.setState({userInput : ''});
+        },
+        render : function() {
+            return (
+                    <div>
+                        <div onClick={this.clearAndFocusInput}>
+                            点击获取焦点然后重置
+                        </div>
+                        <input type="text" value={this.state.userInput} onChange={this.handleChange} />
+                    </div>
+            )
+        }
+    });
+    React.render(
+            <App />,
+            document.getElementById('container')
+    )
+</script>
+</body>
+</html>

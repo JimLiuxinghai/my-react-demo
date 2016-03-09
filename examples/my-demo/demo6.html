@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="../shared/thirdparty/es5-shim.min.js"></script>
+    <script src="../shared/thirdparty/es5-sham.min.js"></script>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/JSXTransformer.js"></script>
+    <script type="text/jsx">
+        var Hello = React.createClass({
+            render: function() {
+                //return <input type="text" defaultValue="jimliu" />
+                return <textarea name="description" defaultValue="This is a description." />
+            }
+        });
+        React.render(
+             <Hello />,
+
+                document.getElementById('container')
+        )
+    </script>
+</body>
+</html>
