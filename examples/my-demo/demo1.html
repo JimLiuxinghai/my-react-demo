@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+    <title>我的demo1</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="../shared/thirdparty/es5-shim.min.js"></script>
+    <script src="../shared/thirdparty/es5-sham.min.js"></script>
+    <script src="../shared/thirdparty/console-polyfill.js"></script>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/JSXTransformer.js"></script>
+    <script type="text/jsx">
+      var Hello = React.createClass({
+        getInitialState() {
+            return {
+                name : 'jim'  
+            };
+        },
+
+        render : function(){
+            return <h1>{this.state.name}</h1>
+            return <h1 className="aa"></h1>
+          }}
+          
+        )
+      React.render(
+          <Hello />,
+          document.getElementById('container')
+        )
+    </script>
+  </body>
+</html>

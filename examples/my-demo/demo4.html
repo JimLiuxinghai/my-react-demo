@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/JSXTransformer.js"></script>
+    <script type="text/jsx">
+        var ListItemWrapper = React.createClass({
+            render: function() {
+                return <li>{this.props.data.text}</li>;
+            }
+        });
+        var MyComponent = React.createClass({
+            render: function() {
+                return (
+                        <ul>
+                            {this.props.results.map(function(result) {
+                                return <ListItemWrapper key={result.id} data={result}/>;
+                            })}
+                        </ul>
+                );
+            }
+        });
+        React.render(
+                <MyComponent results = {[
+                     {text:'a'},
+                     {text:'b'},
+                     {text:'c'}
+                ]} />,
+                document.getElementById('container')
+        )
+    </script>
+</body>
+</html>

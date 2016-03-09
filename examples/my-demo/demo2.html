@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+    <title>添加点击事件</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="../shared/thirdparty/es5-shim.min.js"></script>
+    <script src="../shared/thirdparty/es5-sham.min.js"></script>
+    <script src="../shared/thirdparty/console-polyfill.js"></script>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/JSXTransformer.js"></script>
+    <script type="text/jsx">
+      var LikeButton =  React.createClass({
+        getInitialState() {
+            return {
+                liked : false  
+            };
+        },
+        handleClick : function(event){
+          this.setState({liked : !this.state.liked});
+        },
+        render : function(){
+          var text = this.state.liked ? '喜欢' : '不喜欢';
+          return (
+            <p onClick={this.handleClick}>
+               you {text} this. 点击切换
+            </p>
+            );
+        }
+      });
+
+      React.render(
+        <LikeButton />,
+        document.getElementById('container')
+        )
+    </script>
+  </body>
+</html>
