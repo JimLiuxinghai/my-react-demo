@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模仿双向绑定</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/JSXTransformer.js"></script>
+    <script type="text/jsx">
+       var Bind =  React.createClass({
+            getInitialState : function () {
+                return {
+                    inputContent : ''
+                }
+            },
+            changeHandle : function(event) {
+                this.setState({
+                    inputContent : event.target.value
+                });
+                console.log(this.state.inputContent)
+            },
+            render : function () {
+                return (
+                        <div>
+                            <input type="text" onChange = {this.changeHandle}/>
+                            <span>{this.state.inputContent}</span>
+                        </div>
+                )
+            }
+        })
+        React.render(
+                <Bind />,
+                document.getElementById('container')
+        )
+    </script>
+</body>
+</html>

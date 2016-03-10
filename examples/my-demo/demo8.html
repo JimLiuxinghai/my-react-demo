@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据双向绑定</title>
+</head>
+<body>
+<div id="container"></div>
+    <script src="../shared/thirdparty/es5-shim.min.js"></script>
+    <script src="../shared/thirdparty/es5-sham.min.js"></script>
+    <script src="../shared/thirdparty/console-polyfill.js"></script>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/JSXTransformer.js"></script>
+    <script type="text/jsx">
+        var NoLink = React.createClass({
+            getInitialState: function() {
+                return {message: 'Hello!'};
+            },
+            handleChange: function(event) {
+                this.setState({message: event.target.value});
+            },
+            render: function() {
+                var message = this.state.message;
+                return <input type="text" value={message} onChange={this.handleChange} />;
+            }
+        });
+
+        React.render(
+                <NoLink />,
+                document.getElementById('container')
+        )
+
+
+    </script>
+</body>
+</html>
