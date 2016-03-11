@@ -2,7 +2,16 @@
 var CommentBox = React.createClass({
 
   handleSubmit : function (comment) {
+    $.ajax({
+      url : '/postCom',
+      data : comment,
+      type : "POST",
+      success : function (msg){
+        if(msg == '200'){
 
+        }
+      }
+    })
   },
   getData : function (){
     var _self = this;
@@ -22,11 +31,14 @@ var CommentBox = React.createClass({
   },
   componentDidMount : function () {
     this.getData();
+    var _self = this;
+    setInterval(function () {
+      _self.getData();
+    },1000);
   },
   render : function () {
     return (
       <div className='commentBox'>
-
         <CommentList commetData={this.state.data}/>
         <CommentForm onCommentSubmit={this.handleSubmit}/>
       </div>
@@ -43,7 +55,6 @@ var Comment = React.createClass({
         </h2>
         {this.props.children}
       </div>
-
     )
   }
 })
