@@ -16,7 +16,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var COMMENTS_FILE = path.join(__dirname, 'comments.json');
+var jsonfile = path.join(__dirname, 'public/data.json');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -34,9 +34,35 @@ app.use(function(req, res, next) {
     res.setHeader('Cache-Control', 'no-cache');
     next();
 });
+//发表存储
+app.post('/postCom',function (req,res,next) {
+  fs.readFile(jsonfile,function(err,data){
+    var oldComment = JSON.parse(data);
+    var author = req.body.author;
+    var text = req.body.text;
+    var newConment = {
+      id : Date.now(),
+      author : author,
+      text : text
+    }
+    oldComment.push(newConment);
+    fs.writeFile(jsonfile,JSON.stringify(oldComment, null, 4),function(err,data){
+      if(err){
+        console.error(err);
+      }
+      else{
+        res.send({msg : 'success',data : oldComment})
+      }
+    })
 
+  })
+})
+//获取数据
+app.get('/getJson',function(req,res,next){
+  fs.readFile(jsonfile,function(err,data){
 
-
+  })
+})
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
