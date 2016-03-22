@@ -1,4 +1,6 @@
-
+var React = require('react');
+var ReactDOM = require('react-dom');
+var $ = require('jquery');
 var CommentBox = React.createClass({
 
   handleSubmit : function (comment) {
@@ -127,4 +129,22 @@ var CommentForm = React.createClass({
 ReactDOM.render(
   <CommentBox />,
   document.getElementById('container')
+)
+
+var Counter = React.createClass({
+  getInitialState : function () {
+    return { clickCount : 0 };
+  },
+  handleClick : function () {
+    this.setState(function(state){
+      return {clickCount : state.clickCount +1};
+    })
+  },
+  render : function () {
+    return (<h2 onClick = {this.handleClick}>点击次数为：{this.state.clickCount}</h2>)
+  }
+});
+ReactDOM.render(
+  <Counter />,
+  document.getElementById('example')
 )

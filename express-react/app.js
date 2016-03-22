@@ -18,7 +18,7 @@ var app = express();
 
 var jsonfile = path.join(__dirname, 'public/data.json');
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 8787));
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -45,12 +45,14 @@ app.post('/postCom',function (req,res,next) {
       author : author,
       text : text
     }
+    console.log(newConment)
     oldComment.push(newConment);
     fs.writeFile(jsonfile,JSON.stringify(oldComment, null, 4),function(err,data){
       if(err){
         console.error(err);
       }
       else{
+
         res.send({msg : 'success',data : oldComment})
       }
     })
@@ -63,7 +65,6 @@ app.get('/getJson',function(req,res,next){
 
   })
 })
-
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
